@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Goldcrest Capital Solutions</title>
+  <meta name="description" content="Goldcrest Capital Solutions — Planes de salud, vida, ahorro e inversión." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --sky:        #5BBBD6;
+      --sky-hover:  #47A8C2;
+      --sky-light:  #A2D8EC;
+      --sky-bg:     #EBF6FB;
+      --sky-dark:   #3490AC;
+      --gold:       #E8C46A;
+      --gold-hover: #D4A848;
+      --gold-light: #F2DAAA;
+      --gold-bg:    #FDF6E3;
+      --dark:       #1C2B3A;
+      --dark-mid:   #374F66;
+      --body:       #5A6E82;
+      --muted:      #8FA3B5;
+      --white:      #FFFFFF;
+      --bg:         #F4F8FB;
+      --bg-alt:     #EBF1F6;
+      --border:     #D8E5EE;
+      --border-med: #C2D5E2;
+      --sh-sm:      0 2px 12px rgba(28,43,58,.07);
+      --sh:         0 8px 32px rgba(28,43,58,.1);
+      --sh-lg:      0 24px 60px rgba(28,43,58,.14);
+      --r:          12px;
+      --rlg:        20px;
+      --ease:       .32s cubic-bezier(.4,0,.2,1);
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--white);color:var(--dark);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+    img{display:block;max-width:100%;height:auto}
+    a{text-decoration:none;color:inherit}
+    ul{list-style:none}
+    button{cursor:pointer;border:none;background:none;font-family:inherit}
+
+    /* ── Typography ── */
+    .lbl{display:inline-block;font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--sky);margin-bottom:.85rem}
+    h1,h2,h3{font-family:'Playfair Display',serif;line-height:1.15;color:var(--dark)}
+    h1{font-size:clamp(2.2rem,4.5vw,3.6rem);font-weight:700}
+    h2{font-size:clamp(1.7rem,3vw,2.55rem);font-weight:600}
+    h3{font-size:1.15rem;font-weight:600}
+    p{line-height:1.75;color:var(--body)}
+
+    /* ── Buttons ── */
+    .btn{display:inline-flex;align-items:center;gap:.45rem;padding:.85rem 1.9rem;border-radius:8px;font-size:.875rem;font-weight:700;letter-spacing:.02em;transition:var(--ease);cursor:pointer;border:2px solid transparent}
+    .btn-sky{background:var(--sky);color:var(--white);border-color:var(--sky)}
+    .btn-sky:hover{background:var(--sky-hover);border-color:var(--sky-hover);transform:translateY(-2px);box-shadow:0 8px 24px rgba(91,187,214,.35)}
+    .btn-gold{background:var(--gold);color:var(--dark);border-color:var(--gold)}
+    .btn-gold:hover{background:var(--gold-hover);border-color:var(--gold-hover);transform:translateY(-2px);box-shadow:0 8px 24px rgba(232,196,106,.4)}
+    .btn-outline{background:transparent;color:var(--sky);border-color:var(--sky)}
+    .btn-outline:hover{background:var(--sky);color:var(--white);transform:translateY(-2px)}
+    .btn-outline-white{background:transparent;color:rgba(255,255,255,.85);border-color:rgba(255,255,255,.45)}
+    .btn-outline-white:hover{border-color:rgba(255,255,255,.9);color:var(--white)}
+    .btn-dark{background:var(--dark);color:var(--white);border-color:var(--dark)}
+    .btn-dark:hover{background:var(--dark-mid);transform:translateY(-2px);box-shadow:var(--sh)}
+
+    /* ── Navbar ── */
+    #nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:1.1rem 2rem;display:flex;align-items:center;justify-content:space-between;transition:background var(--ease),padding var(--ease),box-shadow var(--ease)}
+    #nav.scrolled{background:rgba(255,255,255,.96);backdrop-filter:blur(14px);padding:.8rem 2rem;box-shadow:0 2px 20px rgba(28,43,58,.08)}
+    .nav-logo{display:flex;align-items:center;gap:.65rem}
+    .logo-icon{width:38px;height:38px;flex-shrink:0}
+    .logo-name{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;letter-spacing:.01em;line-height:1.1}
+    .logo-sub{font-size:.6rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+    #nav:not(.scrolled) .logo-name{color:var(--white)}
+    #nav:not(.scrolled) .logo-sub{color:var(--sky-light)}
+    #nav:not(.scrolled) .nav-a{color:rgba(255,255,255,.8)}
+    #nav:not(.scrolled) .nav-a:hover{color:var(--white)}
+    #nav:not(.scrolled) .btn-contact{color:rgba(255,255,255,.75);border-color:rgba(255,255,255,.35)}
+    #nav:not(.scrolled) .btn-contact:hover{border-color:rgba(255,255,255,.85);color:var(--white)}
+    #nav.scrolled .logo-name{color:var(--dark)}
+    #nav.scrolled .logo-sub{color:var(--sky)}
+    #nav.scrolled .nav-a{color:var(--dark-mid)}
+    .nav-links{display:flex;gap:2.2rem;align-items:center}
+    .nav-a{font-size:.84rem;font-weight:600;letter-spacing:.02em;transition:color .2s;position:relative}
+    .nav-a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:2px;background:var(--sky);border-radius:2px;transform:scaleX(0);transition:transform .2s}
+    .nav-a:hover{color:var(--sky)}
+    .nav-a:hover::after{transform:scaleX(1)}
+    .nav-right{display:flex;gap:.8rem;align-items:center}
+    .btn-contact{background:transparent;color:var(--dark-mid);border:1.5px solid var(--border-med);padding:.7rem 1.4rem;border-radius:8px;font-size:.84rem;font-weight:600;transition:var(--ease)}
+    .btn-contact:hover{border-color:var(--sky);color:var(--sky)}
+    .ham{display:none;flex-direction:column;gap:5px;padding:4px}
+    .ham span{display:block;width:22px;height:2px;border-radius:2px;transition:var(--ease)}
+    #nav.scrolled .ham span{background:var(--dark)}
+    #nav:not(.scrolled) .ham span{background:var(--white)}
+    .mob-menu{display:none;position:fixed;inset:0;background:var(--white);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:2rem}
+    .mob-menu.open{display:flex}
+    .mob-menu a{font-family:'Playfair Display',serif;font-size:1.85rem;color:var(--dark);transition:color .2s}
+    .mob-menu a:hover{color:var(--sky)}
+    .mob-x{position:absolute;top:1.5rem;right:2rem;font-size:1.75rem;color:var(--dark);line-height:1}
+
+    /* ── Hero ── */
+    #hero{min-height:100vh;background:var(--dark);display:grid;grid-template-columns:1fr 1fr;position:relative;overflow:hidden}
+    .hero-left{position:relative;z-index:2;display:flex;flex-direction:column;justify-content:center;padding:9rem 3.5rem 5rem 5rem}
+    .hero-left::before{content:'';position:absolute;top:-140px;left:-140px;width:480px;height:480px;border-radius:50%;border:1px solid rgba(91,187,214,.1);pointer-events:none}
+    .hero-left::after{content:'';position:absolute;bottom:-60px;left:80px;width:220px;height:220px;border-radius:50%;border:1px solid rgba(91,187,214,.07);pointer-events:none}
+    .hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(91,187,214,.12);border:1px solid rgba(91,187,214,.25);border-radius:100px;padding:.32rem .95rem .32rem .5rem;margin-bottom:1.65rem;align-self:flex-start}
+    .badge-dot{width:7px;height:7px;background:var(--sky);border-radius:50%}
+    .hero-badge span{font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--sky-light)}
+    .hero-left h1{color:var(--white);max-width:520px;margin-bottom:1.1rem}
+    .hero-left h1 em{font-style:italic;color:var(--sky-light)}
+    .hero-left>p{color:rgba(255,255,255,.58);max-width:410px;font-size:.97rem;margin-bottom:2.1rem}
+    .hero-actions{display:flex;gap:.8rem;flex-wrap:wrap;margin-bottom:2.75rem}
+    .hero-stats{display:flex;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:var(--r);overflow:hidden;align-self:flex-start}
+    .h-stat{padding:1rem 1.65rem;flex:1;border-right:1px solid rgba(255,255,255,.07)}
+    .h-stat:last-child{border-right:none}
+    .h-num{font-family:'Playfair Display',serif;font-size:1.65rem;font-weight:700;color:var(--sky-light);line-height:1}
+    .h-lbl{font-size:.66rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.38);margin-top:.28rem}
+
+    /* Hero image panel */
+    .hero-right{position:relative;overflow:hidden}
+    .hero-right img{width:100%;height:100%;object-fit:cover;object-position:center 20%}
+    .hero-right::before{content:'';position:absolute;inset:0;background:linear-gradient(to right,var(--dark) 0%,transparent 38%);z-index:1}
+    .hero-right::after{content:'';position:absolute;inset:0;background:rgba(28,43,58,.2);z-index:1}
+    .hero-card{position:absolute;bottom:2.5rem;left:2rem;z-index:3;background:rgba(255,255,255,.95);backdrop-filter:blur(14px);border-radius:var(--r);padding:1.1rem 1.5rem;display:flex;align-items:center;gap:.9rem;box-shadow:var(--sh-lg);min-width:210px}
+    .hcard-icon{width:42px;height:42px;border-radius:10px;background:var(--sky-bg);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .hcard-icon svg{width:21px;height:21px;stroke:var(--sky);fill:none;stroke-width:1.75}
+    .hcard-lbl{font-size:.7rem;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.07em}
+    .hcard-val{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;color:var(--dark);margin-top:.08rem}
+
+    /* ── Layout ── */
+    .wrap{max-width:1200px;margin:0 auto;padding:5.5rem 2rem}
+
+    /* ── Partners ── */
+    #partners{background:var(--white);border-bottom:1px solid var(--border)}
+    .cat-lbl{font-size:.67rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.9rem;padding-left:.75rem;border-left:3px solid var(--sky)}
+    .logos-row{display:flex;flex-wrap:wrap;gap:.8rem;margin-bottom:2rem}
+    .logo-pill{display:flex;align-items:center;justify-content:center;padding:.7rem 1.5rem;background:var(--bg);border:1.5px solid var(--border);border-radius:100px;transition:var(--ease);cursor:default}
+    .logo-pill:hover{border-color:var(--sky);background:var(--sky-bg);transform:translateY(-2px);box-shadow:var(--sh-sm)}
+    .logo-pill span{font-family:'Playfair Display',serif;font-size:.9rem;font-weight:600;color:var(--dark-mid)}
+    .logo-pill:hover span{color:var(--sky-dark)}
+
+    /* ── About ── */
+    #about{background:var(--bg)}
+    .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+    .about-img{position:relative}
+    .about-img::before{content:'';position:absolute;top:-14px;left:-14px;width:110px;height:110px;border-radius:var(--rlg);background:var(--sky-bg);border:2px solid var(--sky-light);z-index:0}
+    .about-img::after{content:'';position:absolute;bottom:-14px;right:-14px;width:90px;height:90px;border-radius:var(--r);background:var(--gold-bg);border:2px solid var(--gold-light);z-index:0}
+    .about-img img{width:100%;height:540px;object-fit:cover;border-radius:var(--rlg);position:relative;z-index:1}
+    .about-badge{position:absolute;bottom:2rem;left:-2rem;z-index:2;background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:1.2rem 1.65rem;box-shadow:var(--sh);text-align:center}
+    .ab-num{font-family:'Playfair Display',serif;font-size:2.1rem;font-weight:700;color:var(--sky);line-height:1}
+    .ab-txt{font-size:.7rem;color:var(--muted);margin-top:.2rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em}
+    .about-copy h2{margin-bottom:1.15rem}
+    .about-copy p{margin-bottom:.9rem;font-size:.96rem}
+    .about-copy strong{color:var(--dark);font-weight:700}
+
+    /* ── Services ── */
+    #services{background:var(--white)}
+    .svc-top{display:flex;align-items:flex-end;justify-content:space-between;gap:2rem;margin-bottom:2.75rem;flex-wrap:wrap}
+    .svc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.4rem}
+    .svc-card{background:var(--bg);border:1.5px solid var(--border);border-radius:var(--rlg);padding:2.1rem 1.85rem;transition:var(--ease);position:relative;overflow:hidden}
+    .svc-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--sky);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+    .svc-card:hover{border-color:var(--sky-light);background:var(--white);transform:translateY(-6px);box-shadow:var(--sh)}
+    .svc-card:hover::after{transform:scaleX(1)}
+    .svc-ico{width:52px;height:52px;background:var(--sky-bg);border-radius:var(--r);display:flex;align-items:center;justify-content:center;margin-bottom:1.4rem;transition:background var(--ease)}
+    .svc-card:hover .svc-ico{background:var(--sky)}
+    .svc-ico svg{width:23px;height:23px;stroke:var(--sky);fill:none;stroke-width:1.75;transition:stroke var(--ease)}
+    .svc-card:hover .svc-ico svg{stroke:var(--white)}
+    .svc-card h3{margin-bottom:.55rem;font-size:1.05rem}
+    .svc-card p{font-size:.865rem}
+    .svc-link{display:inline-flex;align-items:center;gap:.35rem;margin-top:1.15rem;font-size:.78rem;font-weight:700;color:var(--sky);letter-spacing:.05em;text-transform:uppercase;transition:gap .2s}
+    .svc-link:hover{gap:.65rem}
+
+    /* ── Why Us ── */
+    #why{background:var(--dark)}
+    #why .lbl{color:var(--sky-light)}
+    #why h2{color:var(--white);margin-bottom:2.75rem}
+    .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem}
+    .why-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:var(--rlg);padding:2.35rem 2rem;transition:var(--ease)}
+    .why-card:hover{background:rgba(91,187,214,.06);border-color:rgba(91,187,214,.2);transform:translateY(-4px)}
+    .why-n{font-family:'Playfair Display',serif;font-size:3.2rem;font-weight:700;color:var(--sky);opacity:.22;line-height:1;margin-bottom:.9rem;transition:opacity var(--ease)}
+    .why-card:hover .why-n{opacity:.45}
+    .why-card h3{color:var(--white);margin-bottom:.6rem}
+    .why-card p{color:rgba(255,255,255,.48);font-size:.88rem}
+
+    /* ── Process ── */
+    #process{background:var(--bg)}
+    .process-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+    .proc-img{position:relative}
+    .proc-img::after{content:'';position:absolute;bottom:-14px;right:-14px;width:75%;height:75%;border-radius:var(--rlg);background:var(--gold-bg);border:2px solid var(--gold-light);z-index:0}
+    .proc-img img{width:100%;height:510px;object-fit:cover;border-radius:var(--rlg);position:relative;z-index:1}
+    .proc-steps{display:flex;flex-direction:column}
+    .p-step{display:flex;gap:1.15rem;padding:1.4rem 0;border-bottom:1px solid var(--border)}
+    .p-step:last-child{border-bottom:none}
+    .p-nc{display:flex;flex-direction:column;align-items:center;flex-shrink:0}
+    .p-num{width:40px;height:40px;border-radius:50%;background:var(--sky);color:var(--white);font-family:'Playfair Display',serif;font-size:.92rem;font-weight:700;display:flex;align-items:center;justify-content:center}
+    .p-line{width:1.5px;flex:1;background:var(--border);margin-top:.35rem;min-height:14px}
+    .p-body{padding-top:.55rem}
+    .p-body h3{margin-bottom:.28rem;font-size:.98rem}
+    .p-body p{font-size:.875rem}
+
+    /* ── Testimonials ── */
+    #testimonials{background:var(--white);overflow:hidden}
+    .t-wrap{overflow:hidden;margin-bottom:1.65rem}
+    .t-track{display:flex;gap:1.4rem;transition:transform .5s cubic-bezier(.4,0,.2,1)}
+    .t-card{flex:0 0 calc(33.333% - .95rem);background:var(--bg);border:1.5px solid var(--border);border-radius:var(--rlg);padding:1.9rem;transition:var(--ease)}
+    .t-card:hover{border-color:var(--sky-light);background:var(--sky-bg);box-shadow:var(--sh)}
+    .t-stars{display:flex;gap:.2rem;margin-bottom:.9rem}
+    .t-stars span{color:var(--gold);font-size:.9rem}
+    .t-txt{font-family:'Playfair Display',serif;font-style:italic;font-size:.97rem;line-height:1.7;color:var(--dark-mid);margin-bottom:1.4rem}
+    .t-auth{display:flex;align-items:center;gap:.8rem}
+    .t-av{width:42px;height:42px;border-radius:50%;background:var(--sky);color:var(--white);font-family:'Playfair Display',serif;font-size:.9rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .t-name{font-size:.865rem;font-weight:700;color:var(--dark)}
+    .t-role{font-size:.73rem;color:var(--sky);font-weight:600;margin-top:.08rem}
+    .t-ctrl{display:flex;align-items:center;gap:.8rem}
+    .t-btn{width:40px;height:40px;border-radius:50%;border:1.5px solid var(--border);background:var(--white);color:var(--dark-mid);font-size:.95rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:var(--ease)}
+    .t-btn:hover{background:var(--sky);border-color:var(--sky);color:var(--white)}
+    .t-dots{display:flex;gap:.4rem}
+    .t-dot{width:6px;height:6px;border-radius:50%;background:var(--border-med);cursor:pointer;transition:var(--ease)}
+    .t-dot.active{background:var(--sky);width:18px;border-radius:3px}
+
+    /* ── FAQ ── */
+    #faq{background:var(--bg)}
+    .faq-grid{display:grid;grid-template-columns:1fr 1.65fr;gap:5rem;align-items:start}
+    .faq-intro p{font-size:.95rem;margin-top:.65rem;margin-bottom:1.85rem}
+    .faq-list{display:flex;flex-direction:column;gap:.7rem}
+    .faq-item{background:var(--white);border:1.5px solid var(--border);border-radius:var(--r);overflow:hidden;transition:border-color .2s}
+    .faq-item.open{border-color:var(--sky)}
+    .faq-q{width:100%;text-align:left;padding:1.15rem 1.4rem;display:flex;align-items:center;justify-content:space-between;gap:.9rem;font-weight:700;font-size:.875rem;color:var(--dark);background:none;border:none;cursor:pointer;transition:color .2s}
+    .faq-item.open .faq-q{color:var(--sky-dark)}
+    .faq-ico{width:25px;height:25px;border-radius:50%;border:1.5px solid var(--border-med);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:.95rem;line-height:1;color:var(--muted);transition:var(--ease)}
+    .faq-item.open .faq-ico{background:var(--sky);border-color:var(--sky);color:var(--white);transform:rotate(45deg)}
+    .faq-a{max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(.4,0,.2,1)}
+    .faq-ab{padding:0 1.4rem 1.15rem;font-size:.875rem;color:var(--body);line-height:1.75}
+    .faq-item.open .faq-a{max-height:220px}
+
+    /* ── Contact CTA ── */
+    #cta{background:var(--sky);position:relative;overflow:hidden}
+    #cta::before{content:'';position:absolute;width:480px;height:480px;border-radius:50%;border:1px solid rgba(255,255,255,.12);top:-200px;right:-80px;pointer-events:none}
+    #cta::after{content:'';position:absolute;width:280px;height:280px;border-radius:50%;border:1px solid rgba(255,255,255,.07);bottom:-110px;left:70px;pointer-events:none}
+    .cta-inner{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+    .cta-text .lbl{color:rgba(255,255,255,.6)}
+    .cta-text h2{color:var(--white);margin-bottom:1rem}
+    .cta-text>p{color:rgba(255,255,255,.72);margin-bottom:1.65rem}
+    .cta-feats{display:flex;flex-direction:column;gap:.7rem}
+    .cta-feat{display:flex;align-items:center;gap:.7rem;font-size:.875rem;color:rgba(255,255,255,.85);font-weight:500}
+    .feat-dot{width:7px;height:7px;border-radius:50%;background:var(--gold);flex-shrink:0}
+    .cta-form{background:var(--white);border-radius:var(--rlg);padding:2.4rem;box-shadow:var(--sh-lg)}
+    .cta-form h3{font-size:1.25rem;margin-bottom:.35rem}
+    .cta-form>p{font-size:.84rem;margin-bottom:1.65rem}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;margin-bottom:.9rem}
+    .fg{display:flex;flex-direction:column;gap:.32rem}
+    .fg label{font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+    .fg input,.fg select,.fg textarea{background:var(--bg);border:1.5px solid var(--border);border-radius:var(--r);padding:.78rem .95rem;color:var(--dark);font-family:'Plus Jakarta Sans',sans-serif;font-size:.88rem;outline:none;transition:border-color .2s,box-shadow .2s;width:100%}
+    .fg input::placeholder,.fg textarea::placeholder{color:var(--muted)}
+    .fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--sky);box-shadow:0 0 0 3px rgba(91,187,214,.12)}
+    .fg textarea{resize:none;height:82px}
+    .ff{margin-bottom:.9rem}
+    .cta-form .btn{width:100%;justify-content:center;margin-top:.2rem}
+
+    /* ── Footer ── */
+    footer{background:var(--dark);padding:4.5rem 2rem 2rem}
+    .f-inner{max-width:1200px;margin:0 auto}
+    .f-top{display:grid;grid-template-columns:2fr 1fr 1fr 1.5fr;gap:3rem;padding-bottom:3rem;border-bottom:1px solid rgba(255,255,255,.06)}
+    .f-brand p{color:rgba(255,255,255,.32);font-size:.875rem;line-height:1.75;margin-top:.9rem;max-width:255px}
+    .f-col h4{font-family:'Playfair Display',serif;font-size:.95rem;color:var(--white);margin-bottom:1.15rem}
+    .f-col ul{display:flex;flex-direction:column;gap:.65rem}
+    .f-col ul li a{font-size:.84rem;color:rgba(255,255,255,.32);transition:color .2s}
+    .f-col ul li a:hover{color:var(--sky-light)}
+    .f-contact p{font-size:.84rem;color:rgba(255,255,255,.32);margin-bottom:.5rem}
+    .f-contact strong{color:rgba(255,255,255,.62);font-weight:600}
+    .f-soc{display:flex;gap:.6rem;margin-top:1.15rem}
+    .soc{width:33px;height:33px;border-radius:50%;border:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.38);transition:var(--ease)}
+    .soc:hover{background:var(--sky);border-color:var(--sky);color:var(--white)}
+    .f-bot{display:flex;align-items:center;justify-content:space-between;padding-top:1.65rem;gap:1rem;flex-wrap:wrap}
+    .f-bot p{font-size:.78rem;color:rgba(255,255,255,.2)}
+    .f-bot-links{display:flex;gap:1.2rem}
+    .f-bot-links a{font-size:.78rem;color:rgba(255,255,255,.2);transition:color .2s}
+    .f-bot-links a:hover{color:var(--sky-light)}
+
+    /* ── WhatsApp FAB ── */
+    .wa{position:fixed;bottom:1.75rem;right:1.75rem;z-index:500;width:52px;height:52px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(37,211,102,.38);transition:var(--ease)}
+    .wa:hover{transform:scale(1.1)}
+    .wa svg{width:26px;height:26px;fill:white}
+
+    /* ── Scroll reveal ── */
+    .rv{opacity:0;transform:translateY(26px);transition:opacity .6s ease,transform .6s ease}
+    .rv.vis{opacity:1;transform:none}
+    .d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
+
+    /* ── Responsive ── */
+    @media(max-width:1024px){
+      #hero{grid-template-columns:1fr}
+      .hero-right{display:none}
+      .hero-left{padding:9rem 2.5rem 5rem}
+      .svc-grid{grid-template-columns:repeat(2,1fr)}
+      .why-grid{grid-template-columns:repeat(2,1fr)}
+      .f-top{grid-template-columns:1fr 1fr}
+      .faq-grid,.about-grid,.process-grid,.cta-inner{grid-template-columns:1fr;gap:2.5rem}
+      .about-img img{height:340px}
+      .about-badge{left:1rem}
+      .proc-img{order:-1}
+      .proc-img img{height:300px}
+    }
+    @media(max-width:768px){
+      .nav-links,.btn-contact{display:none}
+      .ham{display:flex}
+      .why-grid{grid-template-columns:1fr}
+      .svc-grid{grid-template-columns:1fr 1fr}
+      .f-top{grid-template-columns:1fr;gap:2rem}
+      .form-row{grid-template-columns:1fr}
+      .t-card{flex:0 0 85vw}
+      .svc-top{flex-direction:column;align-items:flex-start}
+    }
+    @media(max-width:480px){
+      .svc-grid{grid-template-columns:1fr}
+      .hero-left{padding:7.5rem 1.5rem 4rem}
+      .hero-stats{flex-wrap:wrap}
+    }
+  </style>
+</head>
+<body>
+
+<!-- ════════════════════════════ NAVBAR ════════════════════════════ -->
+<nav id="nav">
+  <a href="#" class="nav-logo">
+    <svg class="logo-icon" viewBox="0 0 38 38" fill="none">
+      <rect width="38" height="38" rx="8" fill="rgba(91,187,214,.15)"/>
+      <path d="M9 19C9 13.477 13.477 9 19 9s10 4.477 10 10" stroke="#5BBBD6" stroke-width="1.75" stroke-linecap="round"/>
+      <path d="M19 9v4M9 19h4M29 19h-4" stroke="#5BBBD6" stroke-width="1.75" stroke-linecap="round"/>
+      <path d="M13.5 25.5l3.5-3.5M24.5 25.5l-3.5-3.5M19 14.5v5l2.8 1.8" stroke="#5BBBD6" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="19" cy="19" r="2" fill="#5BBBD6"/>
+    </svg>
+    <div>
+      <div class="logo-name">Goldcrest Capital</div>
+      <div class="logo-sub">Solutions</div>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#hero" class="nav-a">Home</a></li>
+    <li><a href="#about" class="nav-a">Nosotros</a></li>
+    <li><a href="#services" class="nav-a">Servicios</a></li>
+    <li><a href="#faq" class="nav-a">FAQ</a></li>
+    <li><a href="#cta" class="nav-a">Contacto</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="#cta" class="btn-contact">Contáctanos</a>
+    <a href="#cta" class="btn btn-sky">Obtener plan</a>
+    <button class="ham" id="ham"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- Mobile menu -->
+<div class="mob-menu" id="mob">
+  <button class="mob-x" id="mobX">✕</button>
+  <a href="#hero" class="mob-link">Home</a>
+  <a href="#about" class="mob-link">Nosotros</a>
+  <a href="#services" class="mob-link">Servicios</a>
+  <a href="#faq" class="mob-link">FAQ</a>
+  <a href="#cta" class="mob-link">Contacto</a>
+  <a href="#cta" class="btn btn-sky">Obtener plan</a>
+</div>
+
+<!-- ════════════════════════════ HERO ════════════════════════════ -->
+<section id="hero">
+  <div class="hero-left">
+    <div class="hero-badge">
+      <div class="badge-dot"></div>
+      <span>Expertos en evitar sorpresas</span>
+    </div>
+    <h1>Planes de salud, vida,<br /><em>ahorro e inversión</em></h1>
+    <p>Representamos empresas internacionales con productos de primer nivel para atender todas tus necesidades financieras y de protección.</p>
+    <div class="hero-actions">
+      <a href="#cta" class="btn btn-sky">Obtener plan</a>
+      <a href="#cta" class="btn btn-outline-white">Contáctanos</a>
+    </div>
+    <div class="hero-stats">
+      <div class="h-stat"><div class="h-num">+2,000</div><div class="h-lbl">Clientes</div></div>
+      <div class="h-stat"><div class="h-num">+15</div><div class="h-lbl">Años</div></div>
+      <div class="h-stat"><div class="h-num">4</div><div class="h-lbl">Servicios</div></div>
+    </div>
+  </div>
+
+  <!-- Replace images/hero.jpg with your own lifestyle / family photo -->
+  <div class="hero-right">
+    <img src="images/hero.jpg" alt="Familia feliz protegida por Goldcrest Capital Solutions" />
+    <div class="hero-card">
+      <div class="hcard-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div>
+        <div class="hcard-lbl">Cobertura activa</div>
+        <div class="hcard-val">Internacional</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════ PARTNERS ════════════════════════════ -->
+<section id="partners">
+  <div class="wrap">
+    <div class="rv">
+      <span class="lbl">Conoce a nuestros aliados</span>
+      <h2>Respaldados por las mejores<br />compañías internacionales</h2>
+    </div>
+    <div style="margin-top:2.5rem">
+      <div class="cat-lbl rv">Vida y médico</div>
+      <div class="logos-row">
+        <div class="logo-pill rv"><span>Allianz</span></div>
+        <div class="logo-pill rv d1"><span>BMI</span></div>
+        <div class="logo-pill rv d2"><span>Claria</span></div>
+        <div class="logo-pill rv d3"><span>VUMI Group</span></div>
+      </div>
+      <div class="cat-lbl rv" style="margin-top:.25rem">Inversión y ahorro</div>
+      <div class="logos-row">
+        <div class="logo-pill rv"><span>RL360</span></div>
+        <div class="logo-pill rv d1"><span>StoneX</span></div>
+        <div class="logo-pill rv d2"><span>Godwin Capital</span></div>
+        <div class="logo-pill rv d3"><span>Utmost International</span></div>
+        <div class="logo-pill rv d4"><span>Belobaba Fund</span></div>
+        <div class="logo-pill rv"><span>Investors Trust</span></div>
+        <div class="logo-pill rv d1"><span>Provident Life</span></div>
+        <div class="logo-pill rv d2"><span>Atlas Capital</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════ ABOUT ════════════════════════════ -->
+<section id="about">
+  <div class="wrap">
+    <div class="about-grid">
+      <!-- Replace images/about.jpg with your team or office photo -->
+      <div class="about-img rv">
+        <img src="images/about.jpg" alt="Equipo Goldcrest Capital Solutions" loading="lazy" />
+        <div class="about-badge">
+          <div class="ab-num">+15</div>
+          <div class="ab-txt">años de experiencia</div>
+        </div>
+      </div>
+      <div class="about-copy rv d2">
+        <span class="lbl">Sobre nosotros</span>
+        <h2>Confía en nuestro asesoramiento</h2>
+        <p><strong>Goldcrest Capital Solutions es una empresa de asesoramiento financiero especializada en seguros de vida y médicos, así como planes de ahorro e inversión a corto, medio y largo plazo.</strong></p>
+        <p><strong>Contamos con más de 15 años de experiencia apoyando a clientes y empresas de toda Latinoamérica, recomendándoles los productos que serán los mejores aliados en el transcurso de sus vidas.</strong></p>
+        <a href="#cta" class="btn btn-sky" style="margin-top:.5rem">Obtener plan</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════ SERVICES ════════════════════════════ -->
+<section id="services">
+  <div class="wrap">
+    <div class="svc-top">
+      <div>
+        <span class="lbl">Servicios</span>
+        <h2>Asesoramiento especializado</h2>
+      </div>
+      <a href="#cta" class="btn btn-outline">Obtener plan</a>
+    </div>
+    <div class="svc-grid">
+      <div class="svc-card rv">
+        <div class="svc-ico"><svg viewBox="0 0 24 24"><path d="M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402z"/><path d="M9 12h6M12 9v6" stroke-linecap="round"/></svg></div>
+        <h3>Seguros de salud</h3>
+        <p>Nos aseguramos de brindar la cobertura médica que mejor se ajuste a tus necesidades y presupuesto.</p>
+        <a href="#cta" class="svc-link">Conoce más →</a>
+      </div>
+      <div class="svc-card rv d1">
+        <div class="svc-ico"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h3>Seguros de vida</h3>
+        <p>Para reposición de ingresos, tanto en el caso de familias como empresas.</p>
+        <a href="#cta" class="svc-link">Conoce más →</a>
+      </div>
+      <div class="svc-card rv d2">
+        <div class="svc-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h3>Ahorro</h3>
+        <p>Asesoramiento personalizado para planes de retiro, ahorro y de estudios universitarios.</p>
+        <a href="#cta" class="svc-link">Conoce más →</a>
+      </div>
+      <div class="svc-card rv d3">
+        <div class="svc-ico"><svg viewBox="0 0 24 24"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div>
+        <h3>Inversiones</h3>
+        <p>Con el objetivo de optimizar la rentabilidad de su patrimonio, maximizando la seguridad y flexibilidad del mismo.</p>
+        <a href="#cta" class="svc-link">Conoce más →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════ WHY US ════════════════════════════ -->
+<section id="why">
+  <div class="wrap">
+    <span class="lbl">¿Por qué escogernos?</span>
+    <h2>Soluciones con un enfoque innovador</h2>
+    <div class="why-grid">
+      <div class="why-card rv"><div class="why-n">01</div><h3>Experiencia y resultados</h3><p>Familias y empresas de toda la región Latinoamericana son testimonio de nuestra fiabilidad.</p></div>
+      <div class="why-card rv d1"><div class="why-n">02</div><h3>Cobertura internacional</h3><p>Trabajamos junto a las más prestigiosas empresas internacionales, garantizando el presente y el futuro de tu familia o empresa.</p></div>
+      <div class="why-card rv d2"><div class="why-n">03</div><h3>Soluciones únicas</h3><p>Gracias a nuestro alto conocimiento de los productos existentes, somos capaces de ofrecerte una solución personalizada y ajustada a tus necesidades.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════ PROCESS ════════════════════════════ -->
+<section id="process">
+  <div class="wrap">
+    <div class="process-grid">
+      <div class="proc-steps rv">
+        <span class="lbl">Nuestro proceso</span>
+        <h2 style="margin-bottom:2rem">Construye y garantiza tu futuro hoy</h2>
+        <div class="p-step">
+          <div class="p-nc"><div class="p-num">1</div><div class="p-line"></div></div>
+          <div class="p-body"><h3>Primer paso</h3><p>Identificación de necesidades y oportunidades</p></div>
+        </div>
+        <div class="p-step">
+          <div class="p-nc"><div class="p-num">2</div><div class="p-line"></div></div>
+          <div class="p-body"><h3>Segundo paso</h3><p>Elaboración de propuestas y estructura de productos</p></div>
+        </div>
+        <div class="p-step">
+          <div class="p-nc"><div class="p-num">3</div><div class="p-line"></div></div>
+          <div class="p-body"><h3>Tercer paso</h3><p>Completar solicitudes</p></div>
+        </div>
+        <div class="p-step">
+          <div class="p-nc"><div class="p-num">4</div></div>
+          <div class="p-body"><h3>Cuarto paso</h3><p>Aprobación de los planes</p></div>
+        </div>
+        <a href="#cta" class="btn btn-gold" style="margin-top:2rem;align-self:flex-start">Solicitar propuesta</a>
+      </div>
+      <!-- Replace images/process.jpg with an advisor / consultation photo -->
+      <div class="proc-img rv d2">
+        <img src="images/process.jpg" alt="Proceso de asesoramiento Goldcrest Capital" loading="lazy" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════ TESTIMONIALS ════════════════════════════ -->
+<section id="testimonials">
+  <div class="wrap">
+    <span class="lbl">Ellos han confiado en nosotros</span>
+    <h2 style="margin-bottom:2.5rem">Casos reales de seguros médicos</h2>
+    <div class="t-wrap">
+      <div class="t-track" id="tTrack">
+        <div class="t-card">
+          <div class="t-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+          <p class="t-txt">"El seguro ha sido vital no sólo para nuestra familia sino para cualquier familia. Desde la primera llamada, fluye cualquier información que uno necesita y la colaboración que se brinda es muy humana fuera de su deber profesional."</p>
+          <div class="t-auth"><div class="t-av">JC</div><div><div class="t-name">Jorge Cárdenas</div><div class="t-role">Asegurado BMI</div></div></div>
+        </div>
+        <div class="t-card">
+          <div class="t-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+          <p class="t-txt">"Cuando mi hermano enfermó y sus síntomas empezaron a ser más fuertes, debíamos hacer muchos exámenes. Lo único que alivió esa preocupación fue el apoyo incondicional que el equipo nos brindó en todo momento."</p>
+          <div class="t-auth"><div class="t-av">MG</div><div><div class="t-name">Margarita Guerrero</div><div class="t-role">Hermana asegurado BMI</div></div></div>
+        </div>
+        <div class="t-card">
+          <div class="t-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+          <p class="t-txt">"Nunca me había planteado contar con un seguro internacional, pero me lo ofrecieron y lo obtuve. Un día tuve un accidente grave en Venezuela y gracias a BMI enviaron un helicóptero y me llevaron a Estados Unidos para salvarme la vida."</p>
+          <div class="t-auth"><div class="t-av">AV</div><div><div class="t-name">Arnoldo Jose Vetencourt</div><div class="t-role">Asegurado BMI</div></div></div>
+        </div>
+        <div class="t-card">
+          <div class="t-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+          <p class="t-txt">"Cuando obtuve la póliza y empezó mi cáncer, nunca me tuve que enterar cuánto costaba los tratamientos. Esa tranquilidad que obtuve yo y mi familia definitivamente no tiene valor. Me devolvieron la vida."</p>
+          <div class="t-auth"><div class="t-av">FA</div><div><div class="t-name">Francisco Arias</div><div class="t-role">Asegurado BMI</div></div></div>
+        </div>
+        <div class="t-card">
+          <div class="t-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+          <p class="t-txt">"Después del accidente de columna de mi hijo, tuvo que pasar por un gran proceso de recuperación donde BMI estuvo presente todo el tiempo, nos apoyó ubicando médicos y la verdad nos sentimos apoyados y en familia."</p>
+          <div class="t-auth"><div class="t-av">RC</div><div><div class="t-name">Rita Castillo</div><div class="t-role">Asegurada BMI</div></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="t-ctrl">
+      <button class="t-btn" id="tPrev">&#8592;</button>
+      <button class="t-btn" id="tNext">&#8594;</button>
+      <div class="t-dots" id="tDots">
+        <div class="t-dot active" data-i="0"></div>
+        <div class="t-dot" data-i="1"></div>
+        <div class="t-dot" data-i="2"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════ FAQ ════════════════════════════ -->
+<section id="faq">
+  <div class="wrap">
+    <div class="faq-grid">
+      <div class="faq-intro rv">
+        <span class="lbl">FAQs</span>
+        <h2>Preguntas frecuentes</h2>
+        <p>Te presentamos las respuestas a algunas de las preguntas más comunes de nuestros clientes.</p>
+        <a href="#cta" class="btn btn-sky">Hablar con un asesor</a>
+      </div>
+      <div class="faq-list rv d2">
+        <div class="faq-item">
+          <button class="faq-q">¿Qué planes de inversión ofrece Goldcrest?<span class="faq-ico">+</span></button>
+          <div class="faq-a"><div class="faq-ab">Ofrecemos planes de ahorro desde $300/mes y planes de inversión de aporte único desde $10,000. Contáctanos sin compromiso para recibir información detallada de las opciones disponibles.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">¿Qué cobertura de salud/vida necesito?<span class="faq-ico">+</span></button>
+          <div class="faq-a"><div class="faq-ab">La cobertura dependerá del presupuesto disponible y de las características del solicitante y de su familia. Te invitamos a contactarnos para que nuestros asesores te preparen una propuesta personalizada.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">¿Qué métodos puedo utilizar para pagar mi plan?<span class="faq-ico">+</span></button>
+          <div class="faq-a"><div class="faq-ab">Las primas de los planes de ahorro regular se pagan mediante tarjeta de crédito o débito (VISA o Mastercard). Los aportes únicos de los planes de inversión se realizan mediante transferencia internacional.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">¿Cómo determino la cantidad a invertir?<span class="faq-ico">+</span></button>
+          <div class="faq-a"><div class="faq-ab">El monto dependerá de tu presupuesto, de las características de tu grupo familiar y de los objetivos que desees conseguir.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">¿Cómo puedo realizar un reclamo de mi seguro médico?<span class="faq-ico">+</span></button>
+          <div class="faq-a"><div class="faq-ab">Goldcrest Capital te acompañará en todo el proceso. Deberás facilitarnos todos los documentos relativos a la incidencia médica debidamente firmados y sellados por los doctores responsables.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">¿Puede la aseguradora negarme la contratación?<span class="faq-ico">+</span></button>
+          <div class="faq-a"><div class="faq-ab">Sí, porque la aprobación de un seguro de vida o médico depende del estado de salud e historial médico del asegurado. Es fundamental que la información facilitada sea veraz.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">¿Cómo determino el producto más conveniente?<span class="faq-ico">+</span></button>
+          <div class="faq-a"><div class="faq-ab">Ello dependerá del presupuesto disponible, de las características del grupo familiar y de los objetivos que se quiera obtener. No dudes en contactarnos para una propuesta personalizada.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">¿Cómo identifico los productos más adecuados para mí?<span class="faq-ico">+</span></button>
+          <div class="faq-a"><div class="faq-ab">Mediante la elaboración de una planificación financiera personal elaborada por nuestros expertos asesores. Te recomendamos que la realices lo antes posible para alcanzar tus objetivos de vida.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════ CONTACT CTA ════════════════════════════ -->
+<section id="cta">
+  <div class="wrap">
+    <div class="cta-inner">
+      <div class="cta-text rv">
+        <span class="lbl">Planes de Goldcrest Capital</span>
+        <h2>Contáctanos para asesorarte</h2>
+        <p>Te ofrecemos soluciones personalizadas y con enfoque innovador para cada situación.</p>
+        <div class="cta-feats">
+          <div class="cta-feat"><div class="feat-dot"></div>Asesoramiento personalizado sin costo</div>
+          <div class="cta-feat"><div class="feat-dot"></div>Propuesta a tu medida en 48 horas</div>
+          <div class="cta-feat"><div class="feat-dot"></div>Cobertura internacional garantizada</div>
+          <div class="cta-feat"><div class="feat-dot"></div>Sin compromisos ni letra pequeña</div>
+        </div>
+      </div>
+      <div class="cta-form rv d2">
+        <h3>Solicita tu propuesta</h3>
+        <p>Nuestros asesores te contactarán en menos de 24 horas.</p>
+        <div class="form-row">
+          <div class="fg"><label>Nombre</label><input type="text" placeholder="Tu nombre" /></div>
+          <div class="fg"><label>Apellido</label><input type="text" placeholder="Tu apellido" /></div>
+        </div>
+        <div class="form-row">
+          <div class="fg"><label>Email</label><input type="email" placeholder="correo@ejemplo.com" /></div>
+          <div class="fg"><label>Teléfono</label><input type="tel" placeholder="+503 0000 0000" /></div>
+        </div>
+        <div class="fg ff">
+          <label>¿Qué plan te interesa?</label>
+          <select><option value="">Selecciona un plan</option><option>Seguro de salud</option><option>Seguro de vida</option><option>Plan de ahorro</option><option>Plan de inversión</option><option>Todos los anteriores</option></select>
+        </div>
+        <div class="fg ff">
+          <label>Mensaje (opcional)</label>
+          <textarea placeholder="Cuéntanos sobre tus necesidades..."></textarea>
+        </div>
+        <button class="btn btn-dark" onclick="handleSub(this)">Enviar solicitud</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════ FOOTER ════════════════════════════ -->
+<footer>
+  <div class="f-inner">
+    <div class="f-top">
+      <div class="f-brand">
+        <a href="#" class="nav-logo">
+          <svg class="logo-icon" viewBox="0 0 38 38" fill="none">
+            <rect width="38" height="38" rx="8" fill="rgba(91,187,214,.15)"/>
+            <path d="M9 19C9 13.477 13.477 9 19 9s10 4.477 10 10" stroke="#5BBBD6" stroke-width="1.75" stroke-linecap="round"/>
+            <path d="M19 9v4M9 19h4M29 19h-4" stroke="#5BBBD6" stroke-width="1.75" stroke-linecap="round"/>
+            <path d="M13.5 25.5l3.5-3.5M24.5 25.5l-3.5-3.5M19 14.5v5l2.8 1.8" stroke="#5BBBD6" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="19" cy="19" r="2" fill="#5BBBD6"/>
+          </svg>
+          <div>
+            <div class="logo-name" style="color:var(--white)">Goldcrest Capital</div>
+            <div class="logo-sub" style="color:var(--sky-light)">Solutions</div>
+          </div>
+        </a>
+        <p>Las mejores soluciones para tus necesidades financieras y de protección familiar.</p>
+        <div class="f-soc">
+          <a href="#" class="soc" aria-label="Instagram"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
+          <a href="#" class="soc" aria-label="WhatsApp"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg></a>
+          <a href="#" class="soc" aria-label="LinkedIn"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7H10v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
+        </div>
+      </div>
+      <div class="f-col">
+        <h4>Enlaces</h4>
+        <ul>
+          <li><a href="#hero">Home</a></li>
+          <li><a href="#about">Nosotros</a></li>
+          <li><a href="#services">Servicios</a></li>
+          <li><a href="#cta">Contacto</a></li>
+        </ul>
+      </div>
+      <div class="f-col">
+        <h4>Soporte</h4>
+        <ul>
+          <li><a href="#">Reclamos</a></li>
+          <li><a href="#">Política de privacidad</a></li>
+          <li><a href="#faq">FAQs</a></li>
+          <li><a href="#cta">Contacto</a></li>
+        </ul>
+      </div>
+      <div class="f-col">
+        <h4>Contacto</h4>
+        <div class="f-contact">
+          <p>Oficina de servicio en El Salvador.</p>
+          <p><strong>info@goldcrest-capital.com</strong></p>
+          <p>Llámanos: <strong>(503) 2264-3458</strong></p>
+          <p style="margin-top:.5rem;font-size:.79rem">Síguenos: @goldcrest.capital</p>
+        </div>
+      </div>
+    </div>
+    <div class="f-bot">
+      <p>Copyright © 2024. Goldcrest Capital Solutions. Todos los derechos reservados.</p>
+      <div class="f-bot-links">
+        <a href="#">Privacidad</a>
+        <a href="#">Términos</a>
+        <a href="#">Reclamos</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- WhatsApp FAB -->
+<a href="https://wa.me/50378400306" class="wa" target="_blank" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+</a>
+
+<script>
+  const nav=document.getElementById('nav');
+  window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>60));
+  document.getElementById('ham').addEventListener('click',()=>document.getElementById('mob').classList.add('open'));
+  document.getElementById('mobX').addEventListener('click',()=>document.getElementById('mob').classList.remove('open'));
+  document.querySelectorAll('.mob-link').forEach(l=>l.addEventListener('click',()=>document.getElementById('mob').classList.remove('open')));
+  const io=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('vis');io.unobserve(x.target)}})},{threshold:.1});
+  document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+  document.querySelectorAll('.faq-q').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const it=btn.closest('.faq-item'),op=it.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(i=>i.classList.remove('open'));
+      if(!op)it.classList.add('open');
+    });
+  });
+  const track=document.getElementById('tTrack'),dots=document.querySelectorAll('.t-dot');
+  let cur=0;const tot=5,vis=()=>window.innerWidth<768?1:3;
+  function slide(){
+    const v=vis(),s=Math.min(cur,tot-v),w=track.querySelector('.t-card').offsetWidth+24;
+    track.style.transform=`translateX(-${s*w}px)`;
+    dots.forEach((d,i)=>d.classList.toggle('active',i===Math.min(Math.floor(s/v),dots.length-1)));
+  }
+  document.getElementById('tNext').addEventListener('click',()=>{cur=Math.min(cur+1,tot-vis());slide()});
+  document.getElementById('tPrev').addEventListener('click',()=>{cur=Math.max(cur-1,0);slide()});
+  dots.forEach(d=>d.addEventListener('click',()=>{cur=parseInt(d.dataset.i)*vis();slide()}));
+  window.addEventListener('resize',slide);
+  function handleSub(btn){
+    const o=btn.textContent;btn.textContent='Enviando...';btn.disabled=true;
+    setTimeout(()=>{
+      btn.textContent='✓ Solicitud enviada';btn.style.background='#22c55e';btn.style.borderColor='#22c55e';
+      setTimeout(()=>{btn.textContent=o;btn.style.background='';btn.style.borderColor='';btn.disabled=false},3000);
+    },1200);
+  }
+</script>
+</body>
+</html>
