@@ -75,11 +75,10 @@
     
     /* Efecto de color para el logo cuando la barra NO tiene scroll (Fondo oscuro) */
     #nav:not(.scrolled) .logo-img {
-      /* Si tu logotipo original es de color oscuro, esto lo convertirá en blanco/brillante en el header transparente */
       filter: brightness(0) invert(1); 
     }
     #nav.scrolled .logo-img {
-      filter: none; /* Muestra el logotipo con sus colores originales */
+      filter: none;
     }
 
     .logo-name{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;letter-spacing:.01em;line-height:1.1}
@@ -145,12 +144,10 @@
 
     /* ── Partners ── */
     #partners{background:var(--white);border-bottom:1px solid var(--border)}
-    .cat-lbl{font-size:.67rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.9rem;padding-left:.75rem;border-left:3px solid var(--sky)}
-    .logos-row{display:flex;flex-wrap:wrap;gap:.8rem;margin-bottom:2rem}
-    .logo-pill{display:flex;align-items:center;justify-content:center;padding:.7rem 1.5rem;background:var(--bg);border:1.5px solid var(--border);border-radius:100px;transition:var(--ease);cursor:default}
-    .logo-pill:hover{border-color:var(--sky);background:var(--sky-bg);transform:translateY(-2px);box-shadow:var(--sh-sm)}
-    .logo-pill span{font-family:'Playfair Display',serif;font-size:.9rem;font-weight:600;color:var(--dark-mid)}
-    .logo-pill:hover span{color:var(--sky-dark)}
+    .cat-lbl{font-size:.67rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:1.15rem;padding-left:.75rem;border-left:3px solid var(--sky)}
+    .logos-row{display:flex;flex-wrap:wrap;align-items:center;gap:2.5rem;margin-bottom:2.5rem}
+    .partner-logo{max-height:42px;width:auto;max-width:150px;object-fit:contain;transition:var(--ease);user-select:none}
+    .partner-logo:hover{transform:translateY(-3px);opacity:0.95}
 
     /* ── About ── */
     #about{background:var(--bg)}
@@ -323,6 +320,7 @@
       .form-row{grid-template-columns:1fr}
       .t-card{flex:0 0 85vw}
       .svc-top{flex-direction:column;align-items:flex-start}
+      .logos-row{gap:1.5rem;justify-content:center}
     }
     @media(max-width:480px){
       .svc-grid{grid-template-columns:1fr}
@@ -336,7 +334,6 @@
 <nav id="nav">
   <a href="#" class="nav-logo">
     <img src="images/main-logo.png" alt="Goldcrest Capital Logo" class="logo-img" />
-   
   </a>
   <ul class="nav-links">
     <li><a href="#hero" class="nav-a">Home</a></li>
@@ -404,21 +401,19 @@
     <div style="margin-top:2.5rem">
       <div class="cat-lbl rv">Vida y médico</div>
       <div class="logos-row">
-        <div class="logo-pill rv"><span>Allianz</span></div>
-        <div class="logo-pill rv d1"><span>BMI</span></div>
-        <div class="logo-pill rv d2"><span>Claria</span></div>
-        <div class="logo-pill rv d3"><span>VUMI Group</span></div>
+        <img src="images/logo-allianz.png" alt="Allianz" class="partner-logo rv" />
+        <img src="images/logo-bmi.png" alt="BMI" class="partner-logo rv d1" />
+        <img src="images/logo-claria.png" alt="Claria" class="partner-logo rv d2" />
+        <img src="images/logo-vumi.png" alt="VUMI" class="partner-logo rv d3" />
+        <img src="images/logo-american-fidelity.png" alt="American Fidelity International Ltd." class="partner-logo rv d4" />
+        <img src="images/logo-redbridge.png" alt="Redbridge Insurance Company" class="partner-logo rv" />
       </div>
-      <div class="cat-lbl rv" style="margin-top:.25rem">Inversión y ahorro</div>
+      
+      <div class="cat-lbl rv" style="margin-top:1rem">Inversión y ahorro</div>
       <div class="logos-row">
-        <div class="logo-pill rv"><span>RL360</span></div>
-        <div class="logo-pill rv d1"><span>StoneX</span></div>
-        <div class="logo-pill rv d2"><span>Godwin Capital</span></div>
-        <div class="logo-pill rv d3"><span>Utmost International</span></div>
-        <div class="logo-pill rv d4"><span>Belobaba Fund</span></div>
-        <div class="logo-pill rv"><span>Investors Trust</span></div>
-        <div class="logo-pill rv d1"><span>Provident Life</span></div>
-        <div class="logo-pill rv d2"><span>Atlas Capital</span></div>
+        <img src="images/logo-rl360.png" alt="RL360°" class="partner-logo rv" />
+        <img src="images/logo-stonex.png" alt="StoneX" class="partner-logo rv d1" />
+        <img src="images/logo-utmost.png" alt="Utmost International" class="partner-logo rv d2" />
       </div>
     </div>
   </div>
@@ -663,7 +658,6 @@
       <div class="f-brand">
         <a href="#" class="nav-logo">
           <img src="images/main-logo.png" alt="Goldcrest Capital Logo" class="logo-img" />
-          
         </a>
         <p>Las mejores soluciones para tus necesidades financieras y de protección familiar.</p>
         <div class="f-soc">
