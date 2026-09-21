@@ -365,6 +365,7 @@
     #native-hs-form input[type="text"],
     #native-hs-form input[type="email"],
     #native-hs-form input[type="tel"],
+    #native-hs-form select.form-control,
     #native-hs-form textarea {
       width: 100%;
       padding: 0.65rem 0.8rem;
@@ -377,6 +378,7 @@
       box-sizing: border-box;
     }
     #native-hs-form input:focus,
+    #native-hs-form select.form-control:focus,
     #native-hs-form textarea:focus {
       border-color: #53B6D8;
       background-color: #ffffff;
@@ -396,10 +398,12 @@
       font-size: 0.9rem;
       outline: none;
       cursor: pointer;
+      max-width: 140px;
     }
     .phone-input-wrapper input {
       border: none !important;
       background: transparent !important;
+      width: 100%;
     }
     .checkbox-group {
       display: flex;
@@ -762,7 +766,7 @@
         
         <div class="t-card">
           <div class="t-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-          <p class="t-txt">"Nunca me había planteado contar con un seguro internacional, pero me lo ofrecieron y lo obtuve. Un día tuve un accidente grave en Venezuela y gracias a BMI enviaron un helicóptero y me llevaron a Estados Unidos para salvarme la vida."</p>
+          <p class="t-txt">"Nunca me había planteado contar con un seguro internacional, pero me lo offeredieron y lo obtuve. Un día tuve un accidente grave en Venezuela y gracias a BMI enviaron un helicóptero y me llevaron a Estados Unidos para salvarme la vida."</p>
           <div class="t-auth">
             <div class="t-av">AV</div>
             <div>
@@ -880,7 +884,7 @@
         </div>
       </div>
      
-      <!-- Formulario Nuevo Insertado -->
+      <!-- Formulario Personalizado -->
       <div class="custom-hs-card rv d2">
         <form id="native-hs-form">
           <h3 class="form-title">Solicita tu propuesta</h3>
@@ -904,15 +908,24 @@
             <input type="email" id="email" name="email" required />
           </div>
 
-        <div class="form-group">
-  <label for="phone">Número de teléfono<span class="required">*</span></label>
-  <div class="phone-input-wrapper">
-    <select id="country-code" class="phone-prefix" name="country_code" required>
-      <!-- Se llenará automáticamente con JavaScript -->
-    </select>
-    <input type="tel" id="phone" name="phone" required placeholder="1234 5678" />
-  </div>
-</div>
+          <!-- Selección de País -->
+          <div class="form-group">
+            <label for="country">País de residencia<span class="required">*</span></label>
+            <select id="country" name="country" class="form-control" required>
+              <option value="">Selecciona tu país...</option>
+            </select>
+          </div>
+
+          <!-- Teléfono con Prefijo de País -->
+          <div class="form-group">
+            <label for="phone">Número de teléfono<span class="required">*</span></label>
+            <div class="phone-input-wrapper">
+              <select id="country-code" class="phone-prefix" name="country_code" required>
+                <option value="">País</option>
+              </select>
+              <input type="tel" id="phone" name="phone" required placeholder="1234 5678" />
+            </div>
+          </div>
 
           <!-- Opciones / Planes -->
           <div class="form-group">
@@ -1090,6 +1103,7 @@
   }));
   window.addEventListener('resize', slide);
 </script>
+
 <script>
 const PAISES_DEL_MUNDO = [
   { code: "AF", name: "Afganistán" },
@@ -1302,6 +1316,12 @@ function obtenerPaises(elementId) {
     selectElement.appendChild(option);
   });
 }
+
+// Inicialización de la carga de países al cargar el DOM
+document.addEventListener("DOMContentLoaded", () => {
+  obtenerPaises("country");
+  obtenerPaises("country-code");
+});
 </script>
 </body>
 </html>
