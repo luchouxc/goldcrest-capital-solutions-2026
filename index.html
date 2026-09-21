@@ -840,8 +840,31 @@
       <div class="cta-form rv d2">
         <!-- Contenedor del Formulario HubSpot -->
         <div id="hubspot-form-container">
-          <script src="https://js.hsforms.net/forms/embed/51774889.js" defer></script>
-<div class="hs-form-frame" data-region="na1" data-form-id="a5ccee6a-6be0-450b-a12c-6be1561ac9bc" data-portal-id="51774889"></div>
+         <form id="native-hs-form" class="native-form">
+  <div style="margin-bottom: 1rem;">
+    <label for="firstname" style="display:block; font-size:.7rem; font-weight:700; text-transform:uppercase; color:var(--muted); margin-bottom:.32rem;">Nombre completo</label>
+    <input type="text" id="firstname" name="firstname" required placeholder="Tu nombre" style="width:100%; background:var(--bg); border:1.5px solid var(--border); border-radius:var(--r); padding:.78rem .95rem; font-family:inherit; font-size:.88rem; color:var(--dark); outline:none;" />
+  </div>
+
+  <div style="margin-bottom: 1rem;">
+    <label for="email" style="display:block; font-size:.7rem; font-weight:700; text-transform:uppercase; color:var(--muted); margin-bottom:.32rem;">Correo electrónico</label>
+    <input type="email" id="email" name="email" required placeholder="tu@email.com" style="width:100%; background:var(--bg); border:1.5px solid var(--border); border-radius:var(--r); padding:.78rem .95rem; font-family:inherit; font-size:.88rem; color:var(--dark); outline:none;" />
+  </div>
+
+  <div style="margin-bottom: 1rem;">
+    <label for="phone" style="display:block; font-size:.7rem; font-weight:700; text-transform:uppercase; color:var(--muted); margin-bottom:.32rem;">Teléfono / WhatsApp</label>
+    <input type="tel" id="phone" name="phone" placeholder="+503 1234 5678" style="width:100%; background:var(--bg); border:1.5px solid var(--border); border-radius:var(--r); padding:.78rem .95rem; font-family:inherit; font-size:.88rem; color:var(--dark); outline:none;" />
+  </div>
+
+  <div style="margin-bottom: 1rem;">
+    <label for="message" style="display:block; font-size:.7rem; font-weight:700; text-transform:uppercase; color:var(--muted); margin-bottom:.32rem;">Mensaje</label>
+    <textarea id="message" name="message" rows="3" placeholder="¿En qué podemos ayudarte?" style="width:100%; background:var(--bg); border:1.5px solid var(--border); border-radius:var(--r); padding:.78rem .95rem; font-family:inherit; font-size:.88rem; color:var(--dark); outline:none; resize:vertical;"></textarea>
+  </div>
+
+  <button type="submit" id="hs-submit-btn" class="btn btn-dark" style="width:100%; justify-content:center; margin-top:.5rem;">Enviar mensaje</button>
+  
+  <div id="hs-form-status" style="margin-top:1rem; font-size:.88rem; font-weight:600; text-align:center;"></div>
+</form>
         </div>
       </div>
       
