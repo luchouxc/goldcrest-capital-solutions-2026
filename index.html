@@ -962,16 +962,21 @@
   dots.forEach(d => d.addEventListener('click', () => { cur = parseInt(d.dataset.i) * vis(); slide(); }));
   window.addEventListener('resize', slide);
 
-  // Inicialización del Formulario HubSpot
-  window.addEventListener('load', function() {
+  // Inicialización del Formulario HubSpot (Actualizada con Polling)
+  function renderHubSpotForm() {
     if (window.hbspt) {
-      hbspt.forms.create({
+      window.hbspt.forms.create({
         portalId: "51774889",
         formId: "a5ccee6a-6be0-450b-a12c-6be1561ac9bc",
         target: "#hubspot-form-container"
       });
+    } else {
+      // Si el script de HubSpot aún no está listo, intenta de nuevo en 150ms
+      setTimeout(renderHubSpotForm, 150);
     }
-  });
+  }
+
+  document.addEventListener("DOMContentLoaded", renderHubSpotForm);
 </script>
 </body>
 </html>
