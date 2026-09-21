@@ -3,44 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Goldcrest Capital - Contáctanos</title>
+    <title>Goldcrest Capital - Contáctanos para asesorarte</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        h1, h2, h3, .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+    </style>
 </head>
-<body class="bg-[#4bb1c8] text-white min-h-screen flex items-center justify-center p-6">
+<body class="bg-[#4bb1c8] text-white min-h-screen flex flex-col justify-between relative overflow-x-hidden">
 
-    <div class="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        
-        <!-- Columna de Texto -->
-        <div>
-            <span class="text-xs uppercase tracking-widest opacity-80 mb-2 block">Planes de Goldcrest Capital</span>
-            <h1 class="text-4xl lg:text-5xl font-serif font-bold mb-4">Contáctanos para asesorarte</h1>
-            <p class="text-lg opacity-90 mb-8">Te ofrecemos soluciones personalizadas y con enfoque innovador para cada situación.</p>
+    <!-- Círculos decorativos de fondo (Estilo original) -->
+    <div class="absolute -top-32 -right-32 w-96 h-96 rounded-full border border-white/10 pointer-events-none"></div>
+    <div class="absolute -bottom-32 -left-32 w-96 h-96 rounded-full border border-white/10 pointer-events-none"></div>
+
+    <!-- Contenido Principal -->
+    <main class="flex-grow flex items-center justify-center p-6 lg:p-12 z-10">
+        <div class="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             
-            <ul class="space-y-4 opacity-90">
-                <li class="flex items-center gap-3">
-                    <span class="w-2 h-2 rounded-full bg-amber-400"></span> Asesoramiento personalizado sin costo
-                </li>
-                <li class="flex items-center gap-3">
-                    <span class="w-2 h-2 rounded-full bg-amber-400"></span> Propuesta a tu medida en 48 horas
-                </li>
-                <li class="flex items-center gap-3">
-                    <span class="w-2 h-2 rounded-full bg-amber-400"></span> Cobertura internacional garantizada
-                </li>
-                <li class="flex items-center gap-3">
-                    <span class="w-2 h-2 rounded-full bg-amber-400"></span> Sin compromisos ni letra pequeña
-                </li>
-            </ul>
-        </div>
+            <!-- Columna de Texto -->
+            <div class="space-y-6">
+                <span class="text-xs uppercase tracking-widest opacity-80 font-semibold block">Planes de Goldcrest Capital</span>
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
+                    Contáctanos para asesorarte
+                </h1>
+                <p class="text-lg opacity-90 leading-relaxed max-w-xl">
+                    Te ofrecemos soluciones personalizadas y con enfoque innovador para cada situación.
+                </p>
+                
+                <ul class="space-y-4 pt-2 opacity-95">
+                    <li class="flex items-center gap-3">
+                        <span class="w-2 h-2 rounded-full bg-amber-400 flex-shrink-0"></span> Asesoramiento personalizado sin costo
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <span class="w-2 h-2 rounded-full bg-amber-400 flex-shrink-0"></span> Propuesta a tu medida en 48 horas
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <span class="w-2 h-2 rounded-full bg-amber-400 flex-shrink-0"></span> Cobertura internacional garantizada
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <span class="w-2 h-2 rounded-full bg-amber-400 flex-shrink-0"></span> Sin compromisos ni letra pequeña
+                    </li>
+                </ul>
+            </div>
 
-        <!-- Columna del Formulario (Contenedor Blanco) -->
-        <div class="bg-white rounded-3xl p-8 shadow-xl text-gray-800">
-            <!-- Bloque de inserción nativo de HubSpot -->
-            <script charset="utf-8" type="text/javascript" src="https://js.hsforms.net/forms/embed/51774889.js" defer></script>
-            <div class="hs-form-frame" data-region="na1" data-form-id="a5ccee6a-6be0-450b-a12c-6be1561ac9bc" data-portal-id="51774889"></div>
-        </div>
+            <!-- Columna del Formulario (Contenedor Blanco) -->
+            <div class="bg-white rounded-3xl p-6 sm:p-10 shadow-2xl text-gray-800 w-full">
+                <!-- Script de inserción de HubSpot -->
+                <script charset="utf-8" type="text/javascript" src="https://js.hsforms.net/forms/embed/51774889.js" defer></script>
+                <!-- Contenedor del formulario -->
+                <div class="hs-form-frame" data-region="na1" data-form-id="a5ccee6a-6be0-450b-a12c-6be1561ac9bc" data-portal-id="51774889"></div>
+            </div>
 
-    </div>
+        </div>
+    </main>
+
+    <!-- Footer simple -->
+    <footer class="w-full text-center py-6 text-xs opacity-70 z-10">
+        &copy; 2026 Goldcrest Capital. Todos los derechos reservados.
+    </footer>
 
 </body>
 </html>
