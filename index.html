@@ -2,7 +2,6 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-   <script src="https://js.hsforms.net/forms/embed/51774889.js" defer></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Goldcrest Capital Solutions</title>
   <meta name="description" content="Goldcrest Capital Solutions — Planes de salud, vida, ahorro e inversión." />
@@ -12,6 +11,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  
+  <!-- Script Oficial de HubSpot Forms -->
+  <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/embed/v2.js"></script>
+
   <style>
     :root {
       --sky:        #5BBBD6;
@@ -150,16 +153,12 @@
       background: radial-gradient(circle at 50% 30%, #ffffff 0%, #ebf5fb 60%, #f4f8fb 100%);
       border-bottom: 1px solid var(--border);
       overflow: hidden;
-  /* Ocupa como mínimo el 100% del alto de la ventana visible */
-  min-height: 100vh; 
-  min-height: 100dvh; /* Mejor versión para móviles (ignora las barras de navegación de iOS/Android) */
-
-  /* Centra los logos vertical y horizontalmente dentro del contenedor */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
+      min-height: 100vh; 
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
     #partners::before {
       content: '';
@@ -209,7 +208,7 @@
       margin-bottom: 3.5rem;
     }
     .partner-logo {
-      height: 45px; /* Forzado de altura para agigantar los logos PNG pequeños */
+      height: 45px;
       width: auto;
       max-width: 280px;
       object-fit: contain;
@@ -217,7 +216,6 @@
       user-select: none;
       filter: drop-shadow(0 2px 8px rgba(28,43,58,.04));
     }
-    /* Especificidad corregida con #partners para garantizar hover sobre .rv.vis */
     #partners .partner-logo:hover {
       transform: translateY(-4px) scale(1.10);
       opacity: 1;
@@ -331,17 +329,58 @@
     .cta-feat{display:flex;align-items:center;gap:.7rem;font-size:.875rem;color:rgba(255,255,255,.85);font-weight:500}
     .feat-dot{width:7px;height:7px;border-radius:50%;background:var(--gold);flex-shrink:0}
     .cta-form{background:var(--white);border-radius:var(--rlg);padding:2.4rem;box-shadow:var(--sh-lg)}
-    .cta-form h3{font-size:1.25rem;margin-bottom:.35rem}
-    .cta-form>p{font-size:.84rem;margin-bottom:1.65rem}
-    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;margin-bottom:.9rem}
-    .fg{display:flex;flex-direction:column;gap:.32rem}
-    .fg label{font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
-    .fg input,.fg select,.fg textarea{background:var(--bg);border:1.5px solid var(--border);border-radius:var(--r);padding:.78rem .95rem;color:var(--dark);font-family:'Plus Jakarta Sans',sans-serif;font-size:.88rem;outline:none;transition:border-color .2s,box-shadow .2s;width:100%}
-    .fg input::placeholder,.fg textarea::placeholder{color:var(--muted)}
-    .fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--sky);box-shadow:0 0 0 3px rgba(91,187,214,.12)}
-    .fg textarea{resize:none;height:82px}
-    .ff{margin-bottom:.9rem}
-    .cta-form .btn{width:100%;justify-content:center;margin-top:.2rem}
+
+    /* ── Estilos CSS para el Formulario de HubSpot ── */
+    #hubspot-form-container {
+      width: 100%;
+      min-height: 350px;
+    }
+    .hs-form iframe {
+      width: 100% !important;
+      border: none !important;
+    }
+    .hs-form .hs-input {
+      width: 100% !important;
+      background: var(--bg) !important;
+      border: 1.5px solid var(--border) !important;
+      border-radius: var(--r) !important;
+      padding: .78rem .95rem !important;
+      font-family: 'Plus Jakarta Sans', sans-serif !important;
+      font-size: .88rem !important;
+      color: var(--dark) !important;
+      outline: none !important;
+      transition: border-color .2s, box-shadow .2s !important;
+    }
+    .hs-form .hs-input:focus {
+      border-color: var(--sky) !important;
+      box-shadow: 0 0 0 3px rgba(91,187,214,.12) !important;
+    }
+    .hs-form label {
+      font-size: .7rem !important;
+      font-weight: 700 !important;
+      letter-spacing: .06em !important;
+      text-transform: uppercase !important;
+      color: var(--muted) !important;
+      margin-bottom: .32rem !important;
+      display: block !important;
+    }
+    .hs-form .hs-button {
+      width: 100% !important;
+      background: var(--dark) !important;
+      color: var(--white) !important;
+      border: 2px solid var(--dark) !important;
+      border-radius: 8px !important;
+      padding: .85rem 1.9rem !important;
+      font-weight: 700 !important;
+      cursor: pointer !important;
+      transition: var(--ease) !important;
+      margin-top: .5rem !important;
+    }
+    .hs-form .hs-button:hover {
+      background: var(--dark-mid) !important;
+      border-color: var(--dark-mid) !important;
+      transform: translateY(-2px) !important;
+    }
 
     /* ── Footer ── */
     footer{background:var(--dark);padding:4.5rem 2rem 2rem}
@@ -368,20 +407,19 @@
     .wa:hover{transform:scale(1.1)}
     .wa svg{width:26px;height:26px;fill:white}
 
-     /* ── Logos Partner ── */
+    /* ── Logos Partner ── */
     .partner-card {
-  background-color: #ffffff;
-  border: 1px solid #e2e8f0;
-  border-radius: 12px;
-  padding: 2rem 1.5rem;
-  margin: 1.5rem auto;
-  max-width: 900px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
-}
-
-.partner-card .cat-lbl {
-  margin-bottom: 1.25rem;
-}
+      background-color: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 2rem 1.5rem;
+      margin: 1.5rem auto;
+      max-width: 900px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+    }
+    .partner-card .cat-lbl {
+      margin-bottom: 1.25rem;
+    }
 
     /* ── Scroll reveal ── */
     .rv{opacity:0;transform:translateY(26px);transition:opacity .6s ease,transform .6s ease}
@@ -422,7 +460,7 @@
       .svc-top{flex-direction:column;align-items:flex-start}
       .logos-row{gap:2rem;justify-content:center}
       .partner-logo {
-        height: 50px; /* Tamaño controlado en celulares */
+        height: 50px;
         max-width: 180px;
       }
     }
@@ -495,13 +533,6 @@
       <a href="#cta" class="btn btn-outline-white"><i class="fa-regular fa-envelope"></i> Contáctanos</a>
       <a href="https://wa.me/50378400306" target="_blank" class="btn btn-wa"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
     </div>
-    <!--
-    <div class="hero-stats">
-      <div class="h-stat"><div class="h-num">+2,000</div><div class="h-lbl">Clientes</div></div>
-      <div class="h-stat"><div class="h-num">+15</div><div class="h-lbl">Años</div></div>
-      <div class="h-stat"><div class="h-num">4</div><div class="h-lbl">Servicios</div></div>
-    </div>
-    -->
   </div>
 
   <div class="hero-right">
@@ -535,7 +566,7 @@
         <img src="images/vumi-logo.png" alt="VUMI" class="partner-logo" />
         <img src="images/american-fidelity-logo.png" alt="American Fidelity International Ltd." class="partner-logo" />
         <img src="images/redbridge-logo.png" alt="Redbridge Insurance Company" class="partner-logo" />
-         <img src="images/ole-logo.png" alt="Ole Insurance Company" class="partner-logo" />
+        <img src="images/ole-logo.png" alt="Ole Insurance Company" class="partner-logo" />
       </div>
     </div>
 
@@ -551,8 +582,6 @@
 
   </div>
 </section>
-
-  <!-- End Of Sección Partners Centrada y Rediseñada -->
 
 <section id="about">
   <div class="wrap">
@@ -676,10 +705,6 @@
                 </div>
               </div>
             </div>
-          <div class="t-auth">
-              
-          </div>
-        
         </div>
         
         <div class="t-card">
@@ -698,7 +723,7 @@
         
         <div class="t-card">
           <div class="t-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-          <p class="t-txt">"Nunca me había planteado contar con un seguro internacional, pero me lo ofrecieron y lo obtuve. Un día tuve un accidente grave en Venezuela y gracias a BMI enviaron un helicóptero y me llevaron a Estados Unidos para salvarme la vida."</p>
+          <p class="t-txt">"Nunca me había planteado contar con un seguro internacional, pero me lo offered y lo obtuve. Un día tuve un accidente grave en Venezuela y gracias a BMI enviaron un helicóptero y me llevaron a Estados Unidos para salvarme la vida."</p>
           <div class="t-auth"><div class="t-av">AV</div>
             <div>
               <div class="t-name">Arnoldo Jose Vetencourt</div>
@@ -812,33 +837,10 @@
         </div>
       </div>
      
-      
       <div class="cta-form rv d2">
-
-<div class="hs-form-frame" data-region="na1" data-form-id="a5ccee6a-6be0-450b-a12c-6be1561ac9bc" data-portal-id="51774889"></div>
-        <!--
-        <h3>Solicita tu propuesta</h3>
-        <p>Nuestros asesores te contactarán en menos de 24 horas.</p>
-        <div class="form-row">
-          <div class="fg"><label>Nombre</label><input type="text" placeholder="Tu nombre" /></div>
-          <div class="fg"><label>Apellido</label><input type="text" placeholder="Tu apellido" /></div>
-        </div>
-        <div class="form-row">
-          <div class="fg"><label>Email</label><input type="email" placeholder="correo@ejemplo.com" /></div>
-          <div class="fg"><label>Teléfono</label><input type="tel" placeholder="+503 0000 0000" /></div>
-        </div>
-        <div class="fg ff">
-          <label>¿Qué plan te interesa?</label>
-          <select><option value="">Selecciona un plan</option><option>Seguro de salud</option><option>Seguro de vida</option><option>Plan de ahorro</option><option>Plan de inversión</option><option>Todos los anteriores</option></select>
-        </div>
-        <div class="fg ff">
-          <label>Mensaje (opcional)</label>
-          <textarea placeholder="Cuéntanos sobre tus necesidades..."></textarea>
-        </div>
-        <button class="btn btn-dark" onclick="handleSub(this)">Enviar solicitud</button>
-              -->
+        <!-- Contenedor del Formulario HubSpot -->
+        <div id="hubspot-form-container"></div>
       </div>
-
       
     </div>
   </div>
@@ -870,7 +872,6 @@
       <div class="f-col">
         <h4>Soporte</h4>
         <ul>
-      
           <li><a href="#cta">Contacto</a></li>
         </ul>
       </div>
@@ -879,7 +880,6 @@
         <div class="f-contact">
           <p><strong>admin@goldcrest-capital.com</strong></p>
           <p>Llámanos: <strong>(502) 2384-2317</strong></p>
-        
         </div>
       </div>
     </div>
@@ -902,7 +902,7 @@
   const nav = document.getElementById('nav');
   window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 60));
 
-  // Control de menú móvil con bloqueo de scroll
+  // Control de menú móvil
   const mobMenu = document.getElementById('mob');
   const hamBtn = document.getElementById('ham');
   const closeBtn = document.getElementById('mobX');
@@ -940,7 +940,7 @@
     });
   });
 
-  // Slider Testimonios (Cálculo adaptativo de visibilidad)
+  // Slider Testimonios
   const track = document.getElementById('tTrack'), dots = document.querySelectorAll('.t-dot');
   let cur = 0;
   const tot = 5;
@@ -962,23 +962,16 @@
   dots.forEach(d => d.addEventListener('click', () => { cur = parseInt(d.dataset.i) * vis(); slide(); }));
   window.addEventListener('resize', slide);
 
-  // Formulario
-  function handleSub(btn) {
-    const o = btn.textContent;
-    btn.textContent = 'Enviando...';
-    btn.disabled = true;
-    setTimeout(() => {
-      btn.textContent = '✓ Solicitud enviada';
-      btn.style.background = '#22c55e';
-      btn.style.borderColor = '#22c55e';
-      setTimeout(() => {
-        btn.textContent = o;
-        btn.style.background = '';
-        btn.style.borderColor = '';
-        btn.disabled = false;
-      }, 3000);
-    }, 1200);
-  }
+  // Inicialización del Formulario HubSpot
+  window.addEventListener('load', function() {
+    if (window.hbspt) {
+      hbspt.forms.create({
+        portalId: "51774889",
+        formId: "a5ccee6a-6be0-450b-a12c-6be1561ac9bc",
+        target: "#hubspot-form-container"
+      });
+    }
+  });
 </script>
 </body>
 </html>
