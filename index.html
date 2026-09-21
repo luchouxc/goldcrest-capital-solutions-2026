@@ -1373,6 +1373,8 @@ document.addEventListener("DOMContentLoaded", () => {
         { name: 'phone', value: fullPhone },
         { name: 'message', value: message },
         { name: 'plan_de_cliente_potencial', value: selectedPlans } // Custom property for Contact Object
+        // Asigna el usuario por defecto enviando su ID interno de HubSpot:
+    { name: 'hubspot_owner_id', value: '95950834' }
       ],
       context: {
         pageUri: window.location.href,
