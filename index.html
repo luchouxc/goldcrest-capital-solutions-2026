@@ -1323,5 +1323,89 @@ document.addEventListener("DOMContentLoaded", () => {
   obtenerPaises("country-code");
 });
 </script>
+
+  <script>
+  // Configuración de HubSpot
+  const HUBSPOT_PORTAL_ID = '51774889';
+  const HUBSPOT_FORM_GUID = '2pczuamvgRQuhLGvhVhrJvAutprd';
+
+  document.getElementById('native-hs-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const submitBtn = document.getElementById('hs-submit-btn');
+    const statusDiv = document.getElementById('hs-form-status');
+
+    // Deshabilitar botón mientras envía
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Enviando...';
+    statusDiv.style.color = '#334155';
+    statusDiv.textContent = '';
+
+    // 1. Obtener valores de texto
+    const firstname = document.getElementById('firstname').value.trim();
+    const lastname = document.getElementById('lastname').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const message = document.getElementById('message').value.trim();
+
+    // 2. Obtener texto del país (no el código ISO)
+    const countrySelect = document.getElementById('country');
+    const countryName = countrySelect.options[countrySelect.selectedIndex] ? countrySelect.options[countrySelect.selectedIndex].text : '';
+
+    // 3. Concatenar código de marcación + teléfono
+    const phoneCode = document.getElementById('country-code').value;
+    const phoneNumber = document.getElementById('phone').value.trim();
+    const fullPhone = phoneCode ? `${phoneCode} ${phoneNumber}` : phoneNumber;
+
+    // 4. Capturar las opciones seleccionadas en el checkbox
+    // HubSpot requiere que las opciones múltiples estén separadas por punto y coma (;)
+    const selectedPlans = Array.from(document.querySelectorAll('input[name="plan"]:checked'))
+      .map(cb => cb.value)
+      .join(';');
+
+    // 5. Estructurar el Payload para la API de HubSpot
+    const payload = {
+      fields: [
+        { name: 'firstname', value: firstname },
+        { name: 'lastname', value: lastname },
+        { name: 'email', value: email },
+        { name: 'country', value: countryName },
+        { name: 'phone', value: fullPhone },
+        { name: 'message', value: message },
+        { name: 'plan_de_cliente_potencial', value: selectedPlans } // Custom property for Contact Object
+      ],
+      context: {
+        pageUri: window.location.href,
+        pageName: document.title
+      }
+    };
+
+    try {
+      const response = await fetch(`https://api.hsforms.com/submissions/v3/integration/submit/${HUBSPOT_PORTAL_ID}/${HUBSPOT_FORM_GUID}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      });
+
+      if (response.ok) {
+        statusDiv.style.color = '#10B981';
+        statusDiv.textContent = '¡Gracias! Tu información se ha enviado con éxito.';
+        document.getElementById('native-hs-form').reset();
+      } else {
+        const errorData = await response.json();
+        console.error('Error HubSpot:', errorData);
+        throw new Error('Ocurrió un problema al enviar la información.');
+      }
+    } catch (error) {
+      statusDiv.style.color = '#EF4444';
+      statusDiv.textContent = 'No se pudo enviar el formulario. Por favor, intenta nuevamente.';
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Enviar';
+    }
+  });
+</script>
+  
 </body>
 </html>
