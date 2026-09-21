@@ -14,9 +14,6 @@
   
   <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-  
-  <!-- Script Oficial de HubSpot Forms -->
-  <script charset="utf-8" type="text/javascript" src="https://js.hsforms.net/forms/embed/v2.js"></script>
 
   <style>
     :root {
@@ -77,7 +74,7 @@
     .btn-dark:hover { background: var(--dark-mid); transform: translateY(-2px); box-shadow: var(--sh); }
 
     /* ── Navbar ── */
-    #nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 1.1rem 2rem; display: flex; align-items: center; justify-space-between; transition: background var(--ease), padding var(--ease), box-shadow var(--ease); }
+    #nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 1.1rem 2rem; display: flex; align-items: center; justify-content: space-between; transition: background var(--ease), padding var(--ease), box-shadow var(--ease); }
     #nav.scrolled { background: rgba(255,255,255,.96); backdrop-filter: blur(14px); padding: .8rem 2rem; box-shadow: 0 2px 20px rgba(28,43,58,.08); }
     
     .nav-logo { display: flex; align-items: center; gap: .65rem; }
@@ -324,52 +321,131 @@
     .cta-feats { display: flex; flex-direction: column; gap: .7rem; }
     .cta-feat { display: flex; align-items: center; gap: .7rem; font-size: .875rem; color: rgba(255,255,255,.85); font-weight: 500; }
     .feat-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
-    .cta-form { background: var(--white); border-radius: var(--rlg); padding: 2.4rem; box-shadow: var(--sh-lg); }
 
-    /* ── Estilos para el Formulario de HubSpot ── */
-    #hubspot-form-container { width: 100%; min-height: 350px; }
-    .hs-form iframe { width: 100% !important; border: none !important; }
-    .hs-form .hs-input {
-      width: 100% !important;
-      background: var(--bg) !important;
-      border: 1.5px solid var(--border) !important;
-      border-radius: var(--r) !important;
-      padding: .78rem .95rem !important;
-      font-family: 'Plus Jakarta Sans', sans-serif !important;
-      font-size: .88rem !important;
-      color: var(--dark) !important;
-      outline: none !important;
-      transition: border-color .2s, box-shadow .2s !important;
+    /* ── Estilos Formulario de Contacto Personalizado ── */
+    .custom-hs-card {
+      background: #ffffff;
+      padding: 2.5rem;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+      color: #2b3a4a;
+      font-family: inherit;
+      text-align: left;
     }
-    .hs-form .hs-input:focus {
-      border-color: var(--sky) !important;
-      box-shadow: 0 0 0 3px rgba(91,187,214,.12) !important;
+    .form-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #2b3a4a;
+      margin: 0 0 0.4rem 0;
     }
-    .hs-form label {
-      font-size: .7rem !important;
-      font-weight: 700 !important;
-      letter-spacing: .06em !important;
-      text-transform: uppercase !important;
-      color: var(--muted) !important;
-      margin-bottom: .32rem !important;
-      display: block !important;
+    .form-subtitle {
+      font-size: 0.9rem;
+      color: #6b7280;
+      margin: 0 0 1.8rem 0;
     }
-    .hs-form .hs-button {
-      width: 100% !important;
-      background: var(--dark) !important;
-      color: var(--white) !important;
-      border: 2px solid var(--dark) !important;
-      border-radius: 8px !important;
-      padding: .85rem 1.9rem !important;
-      font-weight: 700 !important;
-      cursor: pointer !important;
-      transition: var(--ease) !important;
-      margin-top: .5rem !important;
+    .form-row.two-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
     }
-    .hs-form .hs-button:hover {
-      background: var(--dark-mid) !important;
-      border-color: var(--dark-mid) !important;
-      transform: translateY(-2px) !important;
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+    .form-group label, .group-label {
+      display: block;
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: #2b3a4a;
+      margin-bottom: 0.4rem;
+    }
+    .required {
+      color: #e53e3e;
+      margin-left: 2px;
+    }
+    #native-hs-form input[type="text"],
+    #native-hs-form input[type="email"],
+    #native-hs-form input[type="tel"],
+    #native-hs-form textarea {
+      width: 100%;
+      padding: 0.65rem 0.8rem;
+      border: 1px solid #cbd5e1;
+      border-radius: 4px;
+      background-color: #f8fafc;
+      font-size: 0.95rem;
+      color: #334155;
+      outline: none;
+      box-sizing: border-box;
+    }
+    #native-hs-form input:focus,
+    #native-hs-form textarea:focus {
+      border-color: #53B6D8;
+      background-color: #ffffff;
+    }
+    .phone-input-wrapper {
+      display: flex;
+      border: 1px solid #cbd5e1;
+      border-radius: 4px;
+      background-color: #f8fafc;
+      overflow: hidden;
+    }
+    .phone-input-wrapper select {
+      border: none;
+      border-right: 1px solid #cbd5e1;
+      background: #f1f5f9;
+      padding: 0 0.6rem;
+      font-size: 0.9rem;
+      outline: none;
+      cursor: pointer;
+    }
+    .phone-input-wrapper input {
+      border: none !important;
+      background: transparent !important;
+    }
+    .checkbox-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-top: 0.3rem;
+    }
+    .checkbox-label {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.95rem;
+      color: #334155;
+      cursor: pointer;
+      font-weight: normal !important;
+    }
+    .checkbox-label input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      accent-color: #53B6D8;
+      cursor: pointer;
+    }
+    .form-actions {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 1.5rem;
+    }
+    #hs-submit-btn {
+      background-color: #53B6D8;
+      color: #ffffff;
+      border: none;
+      padding: 0.75rem 2.2rem;
+      font-size: 0.95rem;
+      font-weight: 700;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+    #hs-submit-btn:hover {
+      background-color: #40a0c2;
+    }
+    #hs-form-status {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-align: center;
     }
 
     /* ── Footer ── */
@@ -437,6 +513,12 @@
       .hero-actions { flex-direction: column; align-items: stretch; width: 100%; }
       .hero-actions .btn { width: 100%; justify-content: center; }
       .wrap { padding-left: 1.25rem; padding-right: 1.25rem; }
+    }
+
+    @media(max-width: 550px) {
+      .form-row.two-cols {
+        grid-template-columns: 1fr;
+      }
     }
 
     @media(max-width: 480px){
@@ -798,34 +880,81 @@
         </div>
       </div>
      
-      <div class="cta-form rv d2">
-        <!-- Contenedor del Formulario HubSpot -->
-        <div id="hubspot-form-container">
-          <form id="native-hs-form" class="native-form">
-            <div style="margin-bottom: 1rem;">
-              <label for="firstname" style="display:block; font-size:.7rem; font-weight:700; text-transform:uppercase; color:var(--muted); margin-bottom:.32rem;">Nombre completo</label>
-              <input type="text" id="firstname" name="firstname" required placeholder="Tu nombre" style="width:100%; background:var(--bg); border:1.5px solid var(--border); border-radius:var(--r); padding:.78rem .95rem; font-family:inherit; font-size:.88rem; color:var(--dark); outline:none;" />
-            </div>
+      <!-- Formulario Nuevo Insertado -->
+      <div class="custom-hs-card rv d2">
+        <form id="native-hs-form">
+          <h3 class="form-title">Solicita tu propuesta</h3>
+          <p class="form-subtitle">Nuestros asesores te contactarán en menos de 48 horas.</p>
 
-            <div style="margin-bottom: 1rem;">
-              <label for="email" style="display:block; font-size:.7rem; font-weight:700; text-transform:uppercase; color:var(--muted); margin-bottom:.32rem;">Correo electrónico</label>
-              <input type="email" id="email" name="email" required placeholder="tu@email.com" style="width:100%; background:var(--bg); border:1.5px solid var(--border); border-radius:var(--r); padding:.78rem .95rem; font-family:inherit; font-size:.88rem; color:var(--dark); outline:none;" />
+          <!-- Nombre y Apellidos en 2 columnas -->
+          <div class="form-row two-cols">
+            <div class="form-group">
+              <label for="firstname">Nombre</label>
+              <input type="text" id="firstname" name="firstname" />
             </div>
-
-            <div style="margin-bottom: 1rem;">
-              <label for="phone" style="display:block; font-size:.7rem; font-weight:700; text-transform:uppercase; color:var(--muted); margin-bottom:.32rem;">Teléfono / WhatsApp</label>
-              <input type="tel" id="phone" name="phone" placeholder="+503 1234 5678" style="width:100%; background:var(--bg); border:1.5px solid var(--border); border-radius:var(--r); padding:.78rem .95rem; font-family:inherit; font-size:.88rem; color:var(--dark); outline:none;" />
+            <div class="form-group">
+              <label for="lastname">Apellidos</label>
+              <input type="text" id="lastname" name="lastname" />
             </div>
+          </div>
 
-            <div style="margin-bottom: 1rem;">
-              <label for="message" style="display:block; font-size:.7rem; font-weight:700; text-transform:uppercase; color:var(--muted); margin-bottom:.32rem;">Mensaje</label>
-              <textarea id="message" name="message" rows="3" placeholder="¿En qué podemos ayudarte?" style="width:100%; background:var(--bg); border:1.5px solid var(--border); border-radius:var(--r); padding:.78rem .95rem; font-family:inherit; font-size:.88rem; color:var(--dark); outline:none; resize:vertical;"></textarea>
+          <!-- Correo Obligatorio -->
+          <div class="form-group">
+            <label for="email">Correo<span class="required">*</span></label>
+            <input type="email" id="email" name="email" required />
+          </div>
+
+          <!-- Teléfono Obligatorio con selector de país -->
+          <div class="form-group">
+            <label for="phone">Número de teléfono<span class="required">*</span></label>
+            <div class="phone-input-wrapper">
+              <select id="country-code" class="phone-prefix">
+                <option value="+1">🇨🇦 +1</option>
+                <option value="+1">🇺🇸 +1</option>
+                <option value="+503">🇸🇻 +503</option>
+                <option value="+52">🇲🇽 +52</option>
+                <option value="+34">🇪🇸 +34</option>
+              </select>
+              <input type="tel" id="phone" name="phone" required placeholder="" />
             </div>
+          </div>
 
-            <button type="submit" id="hs-submit-btn" class="btn btn-dark" style="width:100%; justify-content:center; margin-top:.5rem;">Enviar mensaje</button>
-            <div id="hs-form-status" style="margin-top:1rem; font-size:.88rem; font-weight:600; text-align:center;"></div>
-          </form>
-        </div>
+          <!-- Opciones / Planes -->
+          <div class="form-group">
+            <label class="group-label">¿Qué plan te interesa?</label>
+            <div class="checkbox-group">
+              <label class="checkbox-label">
+                <input type="checkbox" name="plan" value="Seguro de Salud" />
+                <span>Seguro de Salud</span>
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" name="plan" value="Seguro de Vida" />
+                <span>Seguro de Vida</span>
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" name="plan" value="Plan de Ahorro" />
+                <span>Plan de Ahorro</span>
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" name="plan" value="Plan de Inversión" />
+                <span>Plan de Inversión</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Mensaje opcional -->
+          <div class="form-group">
+            <label for="message">Información o mensaje adicional (OPCIONAL)</label>
+            <textarea id="message" name="message" rows="3"></textarea>
+          </div>
+
+          <!-- Botón Enviar alineado a la derecha -->
+          <div class="form-actions">
+            <button type="submit" id="hs-submit-btn">Enviar</button>
+          </div>
+
+          <div id="hs-form-status"></div>
+        </form>
       </div>
       
     </div>
@@ -965,21 +1094,6 @@
     slide();
   }));
   window.addEventListener('resize', slide);
-
-  // Carga del Formulario de HubSpot mediante Polling
-  function renderHubSpotForm() {
-    if (window.hbspt) {
-      window.hbspt.forms.create({
-        portalId: "51774889",
-        formId: "a5ccee6a-6be0-450b-a12c-6be1561ac9bc",
-        target: "#hubspot-form-container"
-      });
-    } else {
-      setTimeout(renderHubSpotForm, 150);
-    }
-  }
-
-  document.addEventListener("DOMContentLoaded", renderHubSpotForm);
 </script>
 </body>
 </html>
